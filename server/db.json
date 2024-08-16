@@ -1,0 +1,166 @@
+{
+  "products": [
+    {
+      "id": "1234567",
+      "title": "Apple iPhone 14 Pro",
+      "description": "The latest iPhone with A16 Bionic chip and ProMotion technology.",
+      "brand": "Apple",
+      "category": "Smartphones",
+      "price": 999.99,
+      "discountPercentage": 10,
+      "rating": 4.8,
+      "comments": "Amazing camera quality and performance.",
+      "images": [
+        "https://example.com/images/iphone14pro-1.jpg",
+        "https://example.com/images/iphone14pro-2.jpg",
+        "https://example.com/images/iphone14pro-3.jpg"
+      ]
+    },
+    {
+      "id": "2345678",
+      "title": "Samsung Galaxy S23 Ultra",
+      "description": "Samsung’s flagship smartphone with an advanced camera system and powerful performance.",
+      "brand": "Samsung",
+      "category": "Smartphones",
+      "price": 1199.99,
+      "discountPercentage": 15,
+      "rating": 4.7,
+      "comments": "A powerhouse of a phone with a stunning display.",
+      "images": [
+        "https://example.com/images/galaxys23ultra-1.jpg",
+        "https://example.com/images/galaxys23ultra-2.jpg"
+      ]
+    },
+    {
+      "id": "3456789",
+      "title": "Sony WH-1000XM5",
+      "description": "Top-of-the-line noise-canceling headphones with superior sound quality.",
+      "brand": "Sony",
+      "category": "Headphones",
+      "price": 349.99,
+      "discountPercentage": 5,
+      "rating": 4.9,
+      "comments": "Unmatched noise cancellation and clarity.",
+      "images": [
+        "https://example.com/images/wh1000xm5-1.jpg",
+        "https://example.com/images/wh1000xm5-2.jpg"
+      ]
+    },
+    {
+      "id": "4567890",
+      "title": "Apple MacBook Pro 16-inch",
+      "description": "The ultimate laptop for professionals with the M2 Max chip and stunning Retina display.",
+      "brand": "Apple",
+      "category": "Laptops",
+      "price": 2499.99,
+      "discountPercentage": 8,
+      "rating": 4.9,
+      "comments": "Incredible performance for creative work.",
+      "images": [
+        "https://example.com/images/macbookpro16-1.jpg",
+        "https://example.com/images/macbookpro16-2.jpg"
+      ]
+    },
+    {
+      "id": "5678901",
+      "title": "Dell XPS 13",
+      "description": "A premium ultrabook with a stunning 4K display and powerful performance.",
+      "brand": "Dell",
+      "category": "Laptops",
+      "price": 1299.99,
+      "discountPercentage": 12,
+      "rating": 4.6,
+      "comments": "Sleek design and excellent performance.",
+      "images": [
+        "https://example.com/images/xps13-1.jpg",
+        "https://example.com/images/xps13-2.jpg"
+      ]
+    },
+    {
+      "id": "6789012",
+      "title": "Apple Watch Series 8",
+      "description": "Advanced health and fitness tracking with a sleek design and powerful features.",
+      "brand": "Apple",
+      "category": "Smartwatches",
+      "price": 399.99,
+      "discountPercentage": 7,
+      "rating": 4.7,
+      "comments": "Best smartwatch with excellent health features.",
+      "images": [
+        "https://example.com/images/applewatch8-1.jpg",
+        "https://example.com/images/applewatch8-2.jpg"
+      ]
+    },
+    {
+      "id": "7890123",
+      "title": "Sony PlayStation 5",
+      "description": "The latest gaming console with immersive graphics and lightning-fast performance.",
+      "brand": "Sony",
+      "category": "Gaming Consoles",
+      "price": 499.99,
+      "discountPercentage": 5,
+      "rating": 4.8,
+      "comments": "A must-have for any serious gamer.",
+      "images": [
+        "https://example.com/images/ps5-1.jpg",
+        "https://example.com/images/ps5-2.jpg"
+      ]
+    },
+    {
+      "id": "8901234",
+      "title": "Bose QuietComfort 45",
+      "description": "Wireless noise-canceling headphones with superior sound and comfort.",
+      "brand": "Bose",
+      "category": "Headphones",
+      "price": 299.99,
+      "discountPercentage": 10,
+      "rating": 4.7,
+      "comments": "Comfortable fit with excellent noise cancellation.",
+      "images": [
+        "https://example.com/images/qc45-1.jpg",
+        "https://example.com/images/qc45-2.jpg"
+      ]
+    },
+    {
+      "id": "9012345",
+      "title": "Amazon Echo Dot (5th Gen)",
+      "description": "Smart speaker with Alexa and improved sound quality.",
+      "brand": "Amazon",
+      "category": "Smart Home",
+      "price": 49.99,
+      "discountPercentage": 20,
+      "rating": 4.5,
+      "comments": "Great sound for its size and a useful assistant.",
+      "images": [
+        "https://example.com/images/echodot5-1.jpg",
+        "https://example.com/images/echodot5-2.jpg"
+      ]
+    },
+    {
+      "id": "0123456",
+      "title": "GoPro HERO11 Black",
+      "description": "Rugged 4K action camera with HyperSmooth stabilization and live streaming.",
+      "brand": "GoPro",
+      "category": "Cameras",
+      "price": 399.99,
+      "discountPercentage": 15,
+      "rating": 4.6,
+      "comments": "Perfect for capturing adventures in high quality.",
+      "images": [
+        "https://example.com/images/goprohero11-1.jpg",
+        "https://example.com/images/goprohero11-2.jpg"
+      ]
+    }
+  ],
+  "users": [
+    {
+      "id": "0123456",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "johndoe@gmail.com",
+      "username": "johndoe",
+      "password": "john1234",
+      "phone": "+998901234567"
+    }
+  ]
+}
