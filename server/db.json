@@ -161,6 +161,15 @@
       "username": "johndoe",
       "password": "john1234",
       "phone": "+998901234567"
+    },
+    {
+      "id": "0123457",
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "email": "janedoe@gmail.com",
+      "username": "janedoe",
+      "password": "jane1234",
+      "phone": "+998941234567"
     }
   ]
 }
