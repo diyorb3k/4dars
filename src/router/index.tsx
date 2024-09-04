@@ -6,7 +6,7 @@ const withSuspense = <P extends object>(cb: () => Promise<{ default: ComponentTy
   const LazyComponent = lazy(cb);
 
   return (props: React.ComponentPropsWithoutRef<ComponentType<P>>) => (
-    <Suspense fallback={<Spin fullscreen />}>
+    <Suspense fallback={<Spin />}>
       <LazyComponent {...props} />
     </Suspense>
   );
