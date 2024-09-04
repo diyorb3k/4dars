@@ -9,10 +9,11 @@ interface User {
   username: string;
   password: string;
   phone: string;
+  additionalInfo?: string;
 }
 
 const Users: React.FC = () => {
-  const [users, setUsers] = useState<User[]>([]); 
+  const [users, setUsers] = useState<User[]>([]);
   const [newUser, setNewUser] = useState<Omit<User, "id">>({
     firstName: "",
     lastName: "",
@@ -20,11 +21,12 @@ const Users: React.FC = () => {
     username: "",
     password: "",
     phone: "",
+    additionalInfo: "",
   });
   const [editingUser, setEditingUser] = useState<User | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState(""); // Qidiruv so'zini saqlash
 
-  // Ma'lumotlarni olish
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -38,7 +40,6 @@ const Users: React.FC = () => {
     fetchUsers();
   }, []);
 
-  // Yangi foydalanuvchi qo'shish
   const handleAddUser = async () => {
     try {
       const response = await axios.post("http://localhost:3000/users", newUser);
@@ -50,6 +51,7 @@ const Users: React.FC = () => {
         username: "",
         password: "",
         phone: "",
+        additionalInfo: "",
       });
       setIsModalOpen(false);
     } catch (error) {
@@ -57,7 +59,6 @@ const Users: React.FC = () => {
     }
   };
 
-  // Foydalanuvchini tahrirlash
   const handleEditUser = async () => {
     if (editingUser) {
       try {
@@ -78,7 +79,6 @@ const Users: React.FC = () => {
     }
   };
 
-  // Foydalanuvchini o'chirish
   const handleDeleteUser = async (id: string) => {
     try {
       await axios.delete(`http://localhost:3000/users/${id}`);
@@ -88,7 +88,6 @@ const Users: React.FC = () => {
     }
   };
 
-  // Formani to'ldirish
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     if (editingUser) {
@@ -98,9 +97,21 @@ const Users: React.FC = () => {
     }
   };
 
+  const filteredUsers = users.filter(user => 
+    user.firstName.toLowerCase().includes(searchTerm.toLowerCase()) 
+   
+  );
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold text-center mb-4">Users</h1>
+      <input
+        type="text"
+        placeholder="Search..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="mb-4 p-2 border border-gray-300 rounded w-full"
+      />
       <button
         onClick={() => {
           setIsModalOpen(true);
@@ -119,11 +130,12 @@ const Users: React.FC = () => {
             <th className="py-2 px-4 text-left font-semibold text-gray-700">Username</th>
             <th className="py-2 px-4 text-left font-semibold text-gray-700">Password</th>
             <th className="py-2 px-4 text-left font-semibold text-gray-700">Phone</th>
+            <th className="py-2 px-4 text-left font-semibold text-gray-700">Bunga ham</th>
             <th className="py-2 px-4 text-left font-semibold text-gray-700">Action</th>
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
+          {filteredUsers.map((user) => (
             <tr key={user.id} className="border-t border-gray-300">
               <td className="py-2 px-4">{user.firstName}</td>
               <td className="py-2 px-4">{user.lastName}</td>
@@ -131,6 +143,7 @@ const Users: React.FC = () => {
               <td className="py-2 px-4">{user.username}</td>
               <td className="py-2 px-4">{user.password}</td>
               <td className="py-2 px-4">{user.phone}</td>
+              <td className="py-2 px-4">{user.additionalInfo}</td>
               <td className="py-2 px-4 flex gap-2">
                 <button
                   onClick={() => {
@@ -219,11 +232,19 @@ const Users: React.FC = () => {
                 className="mb-2 p-2 border border-gray-300 rounded w-full"
                 required
               />
-              <div className="flex justify-end gap-2">
+              <input
+                type="text"
+                name="additionalInfo"
+                placeholder="Additional Info"
+                value={editingUser ? editingUser.additionalInfo : newUser.additionalInfo} // Yangi input maydoni uchun
+                onChange={handleInputChange}
+                className="mb-2 p-2 border border-gray-300 rounded w-full"
+              />
+              <div className="flex justify-between">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="bg-gray-500 text-white px-3 py-1 rounded hover:bg-gray-600 transition"
+                  className="bg-gray-300 text-black px-3 py-1 rounded hover:bg-gray-400 transition"
                 >
                   Cancel
                 </button>
@@ -231,7 +252,7 @@ const Users: React.FC = () => {
                   type="submit"
                   className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition"
                 >
-                  {editingUser ? "Update" : "Add"}
+                  {editingUser ? "Update User" : "Add User"}
                 </button>
               </div>
             </form>

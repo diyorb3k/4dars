@@ -28,7 +28,7 @@ const Products: React.FC = () => {
     images: [],
   });
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
-
+  const [searchTerm, setSearchTerm] = useState<string>(""); 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -60,15 +60,11 @@ const Products: React.FC = () => {
   const handleEditProduct = async () => {
     if (editingProduct) {
       try {
-        console.log("Tahrirlanayotgan mahsulot:", editingProduct);
-  
         const response = await axios.put(
           `http://localhost:3000/products/${editingProduct.id}`,
           editingProduct
         );
-  
-        console.log("Serverdan javob:", response.data);
-  
+
         setProducts((prevProducts) =>
           prevProducts.map((product) =>
             product.id === editingProduct.id ? response.data : product
@@ -83,7 +79,6 @@ const Products: React.FC = () => {
     }
   };
   
-
   const resetForm = () => {
     setNewProduct({
       id: "",
@@ -98,9 +93,23 @@ const Products: React.FC = () => {
     });
   };
 
+  const filteredProducts = products.filter((product) =>
+    product.title.toLowerCase().includes(searchTerm.toLowerCase())
+    
+  );
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold text-center mb-4">Products</h1>
+      
+      <input
+        type="text"
+        placeholder="Search products..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="border border-gray-300 p-2 rounded mb-4 w-full"
+      />
+
       <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden">
         <thead className="bg-gray-100">
           <tr>
@@ -115,7 +124,7 @@ const Products: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <tr key={product.id} className="border-t border-gray-300">
               <td className="py-2 px-4">{product.title}</td>
               <td className="py-2 px-4">{product.description}</td>
@@ -143,7 +152,6 @@ const Products: React.FC = () => {
                       setProducts((prevProducts) =>
                         prevProducts.filter((p) => p.id !== product.id)
                       );
-                      console.log(`Product with id ${product.id} deleted successfully`);
                     } catch (error) {
                       console.error("Error deleting product:", error);
                     }
@@ -211,29 +219,21 @@ const Products: React.FC = () => {
               type="number"
               placeholder="Discount Percentage"
               value={newProduct.discountPercentage}
-              onChange={(e) =>
-                setNewProduct({ ...newProduct, discountPercentage: parseFloat(e.target.value) })
-              }
+              onChange={(e) => setNewProduct({ ...newProduct, discountPercentage: parseFloat(e.target.value) })}
               className="border border-gray-300 p-2 rounded mb-4 w-full"
             />
-            <div className="flex justify-end gap-2">
-              <button
-                onClick={editingProduct ? handleEditProduct : handleAddProduct}
-                className="bg-blue-500 text-white px-4 py-2 rounded"
-              >
-                {editingProduct ? "Update" : "Save"}
-              </button>
-              <button
-                onClick={() => {
-                  setIsModalOpen(false);
-                  setEditingProduct(null);
-                  resetForm();
-                }}
-                className="bg-gray-500 text-white px-4 py-2 rounded"
-              >
-                Cancel
-              </button>
-            </div>
+            <button
+              onClick={editingProduct ? handleEditProduct : handleAddProduct}
+              className="bg-blue-500 text-white py-2 px-4 rounded"
+            >
+              {editingProduct ? "Update" : "Add"}
+            </button>
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="bg-red-500 text-white py-2 px-4 rounded ml-2"
+            >
+              Cancel
+            </button>
           </div>
         </div>
       )}
