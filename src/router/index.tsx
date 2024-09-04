@@ -1,24 +1,28 @@
-import { createBrowserRouter } from "react-router-dom";
-import { paths } from "./paths";
+import React, { Suspense, lazy, ComponentType } from "react";
 import { Spin } from "antd";
-import { Suspense, lazy } from "react";
 
-const withSuspense = (cb) => {
-  const L = lazy(cb);
+// Generik tiplarni belgilash
+const withSuspense = <P extends object>(cb: () => Promise<{ default: ComponentType<P> }>) => {
+  const LazyComponent = lazy(cb);
 
-  return (props) => (
+  return (props: P) => (
     <Suspense fallback={<Spin fullscreen />}>
-      <L {...props} />
+      <LazyComponent {...props} />
     </Suspense>
   );
 };
 
+// Lazy yuklangan komponentlar
 const Layout = withSuspense(() => import("../layout/layout"));
 const Dashboard = withSuspense(() => import("../pages/dashboard/Dashboard"));
 const Products = withSuspense(() => import("../pages/products/Products"));
 const Users = withSuspense(() => import("../pages/users/Users"));
 const Profile = withSuspense(() => import("../pages/profile/Profile"));
 const NotFound = withSuspense(() => import("../pages/not-found"));
+
+// Router konfiguratsiyasi
+import { createBrowserRouter } from "react-router-dom";
+import { paths } from "./paths";
 
 export const routes = createBrowserRouter([
   {
