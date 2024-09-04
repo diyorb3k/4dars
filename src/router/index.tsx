@@ -5,7 +5,7 @@ import { Spin } from "antd";
 const withSuspense = <P extends object>(cb: () => Promise<{ default: ComponentType<P> }>) => {
   const LazyComponent = lazy(cb);
 
-  return (props: P) => (
+  return (props: React.ComponentPropsWithoutRef<ComponentType<P>>) => (
     <Suspense fallback={<Spin fullscreen />}>
       <LazyComponent {...props} />
     </Suspense>
